@@ -74,7 +74,10 @@ public class JpegImageView extends ImageView {
 
         mJpeg = jpeg;
         mInSampleSize = 1;
-        mBitmap = null;
+        if (mBitmap != null) {
+            mBitmap.recycle();
+            mBitmap = null;
+        }
 
         adjustSize(getWidth(), getHeight());
     }

@@ -319,7 +319,7 @@ extern "C" JNIEXPORT jlong JNICALL
 Java_libjpeg_TurboJpeg_tjwSrcToAlloc(JNIEnv *env, jclass clazz, jlong allocHandle, jbyteArray src) {
     Allocation *allocation = (Allocation *) allocHandle;
     int srcLength = env->GetArrayLength(src);
-    allocation->bytes = tjAlloc(srcLength);
+//    allocation->bytes = tjAlloc(srcLength);
     env->GetByteArrayRegion(src, 0, srcLength, reinterpret_cast<jbyte *>(allocation->bytes));
     return (long) allocation;
 }

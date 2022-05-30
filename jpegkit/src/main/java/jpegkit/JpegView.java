@@ -33,6 +33,7 @@ public class JpegView extends SurfaceView implements SurfaceHolder.Callback {
                     pixelAllocation.getWidth(),
                     pixelAllocation.getHeight());
         }
+        this.surfaceHolder = surfaceHolder;
     }
 
     @Override
@@ -44,10 +45,12 @@ public class JpegView extends SurfaceView implements SurfaceHolder.Callback {
                     pixelAllocation.getWidth(),
                     pixelAllocation.getHeight());
         }
+        this.surfaceHolder = surfaceHolder;
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        this.surfaceHolder = null;
     }
 
     public void setJpeg(byte[] jpeg) throws JpegKitException {
@@ -67,6 +70,20 @@ public class JpegView extends SurfaceView implements SurfaceHolder.Callback {
 
     static {
         System.loadLibrary("jpegkit");
+    }
+
+    SurfaceHolder surfaceHolder = null;
+    public void refresh() throws JpegKitException {
+        if (pixelAllocation != null) {
+            pixelAllocation.refresh();
+        }
+        if (surfaceHolder != null) {
+            renderJpeg(surfaceHolder.getSurface(),
+                    pixelAllocation.getAllocHandle(),
+                    pixelAllocation.getAllocSize(),
+                    pixelAllocation.getWidth(),
+                    pixelAllocation.getHeight());
+        }
     }
 
 }
