@@ -34,7 +34,7 @@ dependencies {
     implementation 'com.android.support:exifinterface:28.0.0-alpha3'
 }
 
-ext.getBintrayUser = { ->
+/*ext.getBintrayUser = { ->
     if (System.getenv('BINTRAY_USER')) {
         return System.getenv('BINTRAY_USER')
     }
@@ -137,4 +137,4 @@ bintray {
             released = new Date()
         }
     }
-}
+}*/
